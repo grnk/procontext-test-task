@@ -35,4 +35,47 @@ class Book extends BaseBook
             'status' => Yii::t('app', 'Статус'),
         ];
     }
+
+    /**
+     * @param $post
+     * @return array
+     */
+    public function getNewAuthorBooks($post)
+    {
+        $authorBooks = [];
+
+        if (empty($post['AuthorBook'])) {
+            return [];
+        }
+
+        foreach ($post['AuthorBook'] as $authorBook) {
+            $authorBooks[] = $authorBook;
+        }
+
+        return $authorBooks;
+    }
+
+    /**
+     * @param $authorId
+     * @return bool
+     */
+    public function createAuthorBook($authorId)
+    {
+        if(empty($authorId)) {
+            return false;
+        }
+
+        return $authorBook = (new AuthorBook([
+            'book_id' => $this->id,
+            'author_id' => $authorId,
+        ]))->save();
+    }
+
+    /**
+     * delete all AuthorBook
+     */
+    public function deleteAllAuthorBooks()
+    {
+        AuthorBook::deleteAll('book_id = ' . $this->id);
+    }
 }
