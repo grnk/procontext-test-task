@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'order')->textInput(['placeholder' => 'Order']) ?>
 
-    <?= $form->field($model, 'status')->textInput(['placeholder' => 'Status']) ?>
+    <?= $form->field($model, 'status')->textInput(['placeholder' => 'Status', 'value' => 1]) ?>
 
     <?php
     $forms = [
