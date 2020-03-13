@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use \common\models\base\Author as BaseAuthor;
+use yii\base\InvalidConfigException;
 
 /**
  * This is the model class for table "author".
@@ -79,6 +80,10 @@ class Author extends BaseAuthor
         AuthorBook::deleteAll('author_id = ' . $this->id);
     }
 
+    /**
+     * @return int|string
+     * @throws InvalidConfigException
+     */
     public function getBooksCount()
     {
         return $this->getBooks()->count();

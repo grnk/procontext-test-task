@@ -1,17 +1,21 @@
 <?php
 
+use mootensai\components\JsBlock;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Book */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+JsBlock::widget(['viewFile' => '_script', 'pos'=> View::POS_END,
     'viewParams' => [
         'class' => 'AuthorBook', 
         'relID' => 'author-book', 
-        'value' => \yii\helpers\Json::encode($model->authorBooks),
+        'value' => Json::encode($model->authorBooks),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
@@ -27,16 +31,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
 
-    <?= $form->field($model, 'order')->textInput(['placeholder' => 'Order']) ?>
+    <?php // echo $form->field($model, 'order')->textInput(['placeholder' => 'Order']) ?>
 
-    <?= $form->field($model, 'status')->textInput(['placeholder' => 'Status', 'value' => 1]) ?>
+    <?php // echo $form->field($model, 'status')->textInput(['placeholder' => 'Status', 'value' => 1]) ?>
 
     <?php
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'AuthorBook')),
             'content' => $this->render('_formAuthorBook', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->authorBooks),
+                'row' => ArrayHelper::toArray($model->authorBooks),
             ]),
         ],
     ];

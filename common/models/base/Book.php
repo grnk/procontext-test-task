@@ -4,6 +4,7 @@ namespace common\models\base;
 
 use common\models\BookQuery;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -66,11 +67,11 @@ class Book extends ActiveRecord
 
     /**
      * @return ActiveQuery
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function getAuthors()
     {
-        return $this->hasMany(\common\models\Book::class, ['id' => 'author_id'])
+        return $this->hasMany(\common\models\Author::class, ['id' => 'author_id'])
             ->viaTable('author_book', ['book_id' => 'id']);
     }
     

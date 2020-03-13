@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use \common\models\base\Book as BaseBook;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "book".
@@ -77,5 +79,14 @@ class Book extends BaseBook
     public function deleteAllAuthorBooks()
     {
         AuthorBook::deleteAll('book_id = ' . $this->id);
+    }
+
+    /**
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public function getAuthorsAsText()
+    {
+        return implode('; ', ArrayHelper::getColumn($this->getAuthors()->all(), 'name'));
     }
 }
