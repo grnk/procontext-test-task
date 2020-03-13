@@ -33,8 +33,7 @@ $this->registerJs($search);
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'name',
-        'order',
-        'status',
+        'booksCount',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

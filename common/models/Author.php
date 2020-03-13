@@ -78,4 +78,9 @@ class Author extends BaseAuthor
     {
         AuthorBook::deleteAll('author_id = ' . $this->id);
     }
+
+    public function getBooksCount()
+    {
+        return $this->getBooks()->count();
+    }
 }
