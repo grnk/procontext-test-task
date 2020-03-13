@@ -68,6 +68,10 @@ class AuthorController extends Controller
         $model = new Author();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            foreach ($model->getNewAuthorBooks(Yii::$app->request->post()) as $newAuthorBook) {
+                $model->createAuthorBook($newAuthorBook['book_id']);
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -87,6 +91,11 @@ class AuthorController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->deleteAllAuthorBooks();
+            foreach ($model->getNewAuthorBooks(Yii::$app->request->post()) as $newAuthorBook) {
+                $model->createAuthorBook($newAuthorBook['book_id']);
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
