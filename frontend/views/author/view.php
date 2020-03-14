@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         'name',
-        'booksCount'
+        'booksCount:html:Number of books'
 //        'order',
 //        'status',
     ];

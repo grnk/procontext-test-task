@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         'title',
-        'authorsAsText',
+        'authorsAsText:html:Authors',
     ];
     echo DetailView::widget([
         'model' => $model,
